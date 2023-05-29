@@ -1,14 +1,14 @@
 <script setup>
-import OverviewIcon from "./icons/overview.svg";
-import ShoppingIcon from "./icons/shopping-bag.svg";
-import GraphIcon from "./icons/graph.svg";
-import Calendaricon from "./icons/calendar.svg";
-import WalletIcon from "./icons/wallet.svg";
-import FileIcon from "./icons/file.svg";
-import ChatIcon from "./icons/chat.svg";
-import GroupChatIcon from "./icons/group-chat.svg";
-import SetingsIcon from "./icons/settings.svg";
-import LogoutIcon from "./icons/logout.svg";
+import OverviewIcon from "./icons/OverviewIcon";
+import ShoppingIcon from "./icons/ShoppingIcon";
+import GraphIcon from "./icons/GraphIcon";
+import Calendaricon from "./icons/Calendaricon";
+import WalletIcon from "./icons/WalletIcon";
+import Fileicon from "./icons/Fileicon";
+import ChatIcon from "./icons/ChatIcon";
+import GroupChatIcon from "./icons/GroupChatIcon";
+import SetingsIcon from "./icons/SetingsIcon";
+import LogoutIcon from "./icons/LogoutIcon";
 
 const sidebar = [
     [
@@ -33,8 +33,13 @@ const sidebar = [
             <img src="/img/logo.png" alt="" class="w-28" />
             <ul v-for="group in sidebar" class="flex flex-col gap-y-6 pt-20">
                 <li v-for="item in group" class="text-gray-400">
-                    <img :src="item.icon" alt="" />
-                    <a href="#" class="hover:text-gray-600">{{ item.name }}</a>
+                    <a href="#" class="hover:text-gray-600">
+                        <component
+                            :is="item.icon"
+                            class="h-4 w-6 fill-current"
+                        />
+                        {{ item.name }}</a
+                    >
                 </li>
             </ul>
         </aside>
