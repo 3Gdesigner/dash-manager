@@ -11,6 +11,12 @@ import SetingsIcon from "./icons/settings.svg";
 import LogoutIcon from "./icons/logout.svg";
 import PlusIcon from "./icons/plus.svg";
 
+import LayerIcon from "./icons/layers.svg";
+import DraftIcon from "./icons/draft.svg";
+import InvisibleIcon from "./icons/invisible.svg";
+import RejeitedIcon from "./icons/rejected.svg";
+import MailIcon from "./icons/mail.svg";
+
 const sidebar = [
     [
         { name: "Overview", icon: OverviewIcon },
@@ -25,6 +31,16 @@ const sidebar = [
         { name: "Community", icon: GroupChatIcon },
         { name: "Setings", icon: SetingsIcon },
         { name: "Logout", icon: LogoutIcon },
+    ],
+];
+
+const status = [
+    [
+        { StatusName: "Published", icon: LayerIcon },
+        { StatusName: "Draft", icon: DraftIcon },
+        { StatusName: "Hidden", icon: InvisibleIcon },
+        { StatusName: "Rejeited", icon: RejeitedIcon },
+        { StatusName: "Under Review", icon: MailIcon },
     ],
 ];
 </script>
@@ -65,7 +81,7 @@ const sidebar = [
                     </p>
                 </div>
                 <button
-                    class="inline-flex items-center gap-x-2 rounded-xl bg-indigo-600 px-6 py-2.5 text-white focus:ring-2 hover:bg-indigo-700 focus:outline-none focus:ring-indigo-500 focus:ring-offset-1"
+                    class="inline-flex items-center gap-x-2 rounded-xl bg-indigo-600 px-6 py-2.5 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1"
                 >
                     <PlusIcon class="h-6 w-6 fill-current" />
                     <span class="text-sm font-semibold tracking-wide"
@@ -73,6 +89,27 @@ const sidebar = [
                     >
                 </button>
             </div>
+            <ul
+                v-for="group in status"
+                class="flex items-center gap-x-20 border-y border-gray-200 px-4"
+            >
+                <li v-for="item in group">
+                    <button
+                        class="group relative flex items-center gap-x-2 px-6 py-6 text-gray-500 hover:text-indigo-600"
+                    >
+                        <component
+                            :is="item.icon"
+                            class="h-6 w-6 fill-current"
+                        />
+                        <span class="font-medium">
+                            {{ item.StatusName }}
+                            <span
+                                class="absolute bottom-0 left-3 z-40 h-0.5 w-full scale-x-0 rounded bg-indigo-400 transition-transform ease-in-out group-hover:scale-x-100"
+                            />
+                        </span>
+                    </button>
+                </li>
+            </ul>
         </main>
     </div>
 </template>
