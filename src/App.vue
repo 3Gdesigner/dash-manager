@@ -1,30 +1,42 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import OverviewIcon from "./icons/overview.svg";
+import ShoppingIcon from "./icons/shopping-bag.svg";
+import GraphIcon from "./icons/graph.svg";
+import Calendaricon from "./icons/calendar.svg";
+import WalletIcon from "./icons/wallet.svg";
+import FileIcon from "./icons/file.svg";
+import ChatIcon from "./icons/chat.svg";
+import GroupChatIcon from "./icons/group-chat.svg";
+import SetingsIcon from "./icons/settings.svg";
+import LogoutIcon from "./icons/logout.svg";
+
+const sidebar = [
+    [
+        { name: "Overview", icon: "OverviewIcon" },
+        { name: "Products", icon: "ShoppingIcon" },
+        { name: "Analytics", icon: "GraphIcon" },
+        { name: "Schedule", icon: "Calendaricon" },
+        { name: "Payout", icon: "WalletIcon" },
+        { name: "Statemnts", icon: "Fileicon" },
+    ],
+    [
+        { name: "Help", icon: "ChatIcon" },
+        { name: "Community", icon: "GroupChatIcon" },
+        { name: "Setings", icon: "SetingsIcon" },
+        { name: "Logout", icon: "LogoutIcon" },
+    ],
+];
 </script>
-
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+    <div class="max-h-screen w-full bg-gray-50 font-sans text-gray-900">
+        <aside class="w-60 border-r border-gray-200 px-10 py-6">
+            <img src="/img/logo.png" alt="" class="w-28" />
+            <ul v-for="group in sidebar" class="flex flex-col gap-y-6 pt-20">
+                <li v-for="item in group" class="text-gray-400">
+                    <img :src="item.icon" alt="" />
+                    <a href="#" class="hover:text-gray-600">{{ item.name }}</a>
+                </li>
+            </ul>
+        </aside>
+    </div>
 </template>
-
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
