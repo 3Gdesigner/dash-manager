@@ -63,7 +63,7 @@ const products = [
     {
         name: "Traffic lading page",
         category: "Web design",
-        imageUrl: "/img/trafic-landing-page.png",
+        imageUrl: "/img/traffic-landing-page.png",
         price: 24,
         downloaded: 34,
         rating: 4.4,
@@ -83,7 +83,7 @@ const products = [
     {
         name: "Gallery page",
         category: "Web design",
-        imageUrl: "/img/gallery-landing-page.png",
+        imageUrl: "/img/gallery-page.png",
         price: 38,
         downloaded: 194,
         rating: 4.6,
@@ -170,30 +170,42 @@ const products = [
             </ul>
 
             <table class="w-full">
-                <tr>
-                    <td>Product Name</td>
-                    <td>Pricing</td>
-                    <td>Downloaded</td>
-                    <td>Rating</td>
-                    <td>Plataforms</td>
-                    <td>
+                <tr class="border-b text-sm font-medium text-gray-400">
+                    <td class="py-5 pl-10">
+                        <div class="flex items-center gap-x-4">
+                            <input type="checkbox" class="w-6 h-6 border-gray-300 rounded-md text-indigo-600 " indeterminate="indeterminate" />
+                            <span>Product Name</span>
+                        </div>
+                    </td>
+                    <td class="px-4 py-4 text-center">Pricing</td>
+                    <td class="px-4 py-4 text-center">Downloaded</td>
+                    <td class="px-4 py-4 text-center">Rating</td>
+                    <td class="px-4 py-4 text-center">Plataforms</td>
+                    <td class="pl4 py-4 pr-10 text-center">
                         <FilterIcon class="h-6 w-6 fill-current" />
                     </td>
                 </tr>
+
+                <tbody>
+                    <tr v-for="product in products">
+                        <td class="flex items-center gap-x-4 py-4 pl-10">
+                            <input type="checkbox" class="w-6 h-6 border-gray-300 rounded-md text-indigo-600 " />
+                            <img
+                                :src="product.imageUrl"
+                                alt=""
+                                class="aspect-[3/2] w-40 rounded-lg border border-gray-300 object-cover object-top"
+                            />
+                            <a href="#" class="text-lg font-semibold text-gray-700">{{ product.name }}</a>
+                            <div class="font-medium text-gray-300">{{ product.category }}</div>
+                        </td>
+                        <td>{{ product.price }}</td>
+                        <td>{{ product.downloaded }}</td>
+                        <td>{{ product.rating }}</td>
+                        <td>Plataforms</td>
+                        <td>{{ product.createdAt }}</td>
+                    </tr>
+                </tbody>
             </table>
-            <tbody>
-                <tr v-for="product in products">
-                    <td>
-                        <img :src="product.imageUrl" alt="" />
-                        <span>{{ product.name }}</span>
-                    </td>
-                    <td>{{ product.price }}</td>
-                    <td>{{ product.downloaded }}</td>
-                    <td>{{ product.rating }}</td>
-                    <td>Plataforms</td>
-                    <td>{{ product.createdAt }}</td>
-                </tr>
-            </tbody>
         </main>
     </div>
 </template>
