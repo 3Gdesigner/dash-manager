@@ -1,5 +1,6 @@
 <script setup>
 import OverviewIcon from "./icons/overview.svg";
+
 import ShoppingBagIcon from "./icons/shopping-bag.svg";
 import GraphIcon from "./icons/graph.svg";
 import Calendaricon from "./icons/calendar.svg";
@@ -9,13 +10,17 @@ import ChatIcon from "./icons/chat.svg";
 import GroupChatIcon from "./icons/group-chat.svg";
 import SetingsIcon from "./icons/settings.svg";
 import LogoutIcon from "./icons/logout.svg";
-import PlusIcon from "./icons/plus.svg";
 
 import LayerIcon from "./icons/layers.svg";
 import DraftIcon from "./icons/draft.svg";
 import InvisibleIcon from "./icons/invisible.svg";
 import RejeitedIcon from "./icons/rejected.svg";
 import MailIcon from "./icons/mail.svg";
+import PlusIcon from "./icons/plus.svg";
+import FilterIcon from "./icons/filter.svg";
+import FigmaIcon from "./icons/figma.svg";
+import SketchIcon from "./icons/sketch.svg";
+import AIIcon from "./icons/ai.svg";
 
 const sidebar = [
     [
@@ -36,12 +41,65 @@ const sidebar = [
 
 const status = [
     [
-        { StatusName: "Published", icon: LayerIcon },
-        { StatusName: "Draft", icon: DraftIcon },
-        { StatusName: "Hidden", icon: InvisibleIcon },
-        { StatusName: "Rejeited", icon: RejeitedIcon },
-        { StatusName: "Under Review", icon: MailIcon },
+        { name: "Published", icon: LayerIcon },
+        { name: "Draft", icon: DraftIcon },
+        { name: "Hidden", icon: InvisibleIcon },
+        { name: "Rejeited", icon: RejeitedIcon },
+        { name: "Under Review", icon: MailIcon },
     ],
+];
+
+const products = [
+    {
+        name: "Organic lading page",
+        category: "Web design",
+        imageUrl: "/img/organic-landing-page.png",
+        price: 20,
+        dwonloaded: 793,
+        rating: 4.9,
+        platformicons: [FigmaIcon, SketchIcon],
+        createdAt: "12/01/22",
+    },
+    {
+        name: "Traffic lading page",
+        category: "Web design",
+        imageUrl: "/img/trafic-landing-page.png",
+        price: 24,
+        downloaded: 34,
+        rating: 4.4,
+        platformicons: [FigmaIcon, AIIcon],
+        createdAt: "10/10/22",
+    },
+    {
+        name: "POS Dashboard",
+        category: "Web design",
+        imageUrl: "/img/pos-dashboard.png",
+        price: 16,
+        downloaded: 896,
+        rating: 4.6,
+        platformicons: [FigmaIcon, SketchIcon],
+        createdAt: "01/01/22",
+    },
+    {
+        name: "Gallery page",
+        category: "Web design",
+        imageUrl: "/img/gallery-landing-page.png",
+        price: 38,
+        downloaded: 194,
+        rating: 4.6,
+        platformicons: [FigmaIcon, SketchIcon],
+        createdAt: "04/01/22",
+    },
+    {
+        name: "WFH Lading page",
+        category: "Web design",
+        imageUrl: "/img/wfh-landing-page.png",
+        price: 22,
+        downloaded: 404,
+        rating: 4.3,
+        platformicons: [FigmaIcon, SketchIcon],
+        createdAt: "12/12/21",
+    },
 ];
 </script>
 <template>
@@ -102,7 +160,7 @@ const status = [
                             class="h-6 w-6 fill-current"
                         />
                         <span class="font-medium">
-                            {{ item.StatusName }}
+                            {{ item.name }}
                             <span
                                 class="absolute bottom-0 left-3 z-40 h-0.5 w-full scale-x-0 rounded bg-indigo-400 transition-transform ease-in-out group-hover:scale-x-100"
                             />
@@ -110,6 +168,32 @@ const status = [
                     </button>
                 </li>
             </ul>
+
+            <table class="w-full">
+                <tr>
+                    <td>Product Name</td>
+                    <td>Pricing</td>
+                    <td>Downloaded</td>
+                    <td>Rating</td>
+                    <td>Plataforms</td>
+                    <td>
+                        <FilterIcon class="h-6 w-6 fill-current" />
+                    </td>
+                </tr>
+            </table>
+            <tbody>
+                <tr v-for="product in products">
+                    <td>
+                        <img :src="product.imageUrl" alt="" />
+                        <span>{{ product.name }}</span>
+                    </td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.downloaded }}</td>
+                    <td>{{ product.rating }}</td>
+                    <td>Plataforms</td>
+                    <td>{{ product.createdAt }}</td>
+                </tr>
+            </tbody>
         </main>
     </div>
 </template>
