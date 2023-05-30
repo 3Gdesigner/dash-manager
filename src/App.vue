@@ -173,7 +173,11 @@ const products = [
                 <tr class="border-b text-sm font-medium text-gray-400">
                     <td class="py-5 pl-10">
                         <div class="flex items-center gap-x-4">
-                            <input type="checkbox" class="w-6 h-6 border-gray-300 rounded-md text-indigo-600 " indeterminate="indeterminate" />
+                            <input
+                                type="checkbox"
+                                class="h-6 w-6 rounded-md border-gray-300 text-indigo-600"
+                                indeterminate="indeterminate"
+                            />
                             <span>Product Name</span>
                         </div>
                     </td>
@@ -189,19 +193,49 @@ const products = [
                 <tbody>
                     <tr v-for="product in products">
                         <td class="flex items-center gap-x-4 py-4 pl-10">
-                            <input type="checkbox" class="w-6 h-6 border-gray-300 rounded-md text-indigo-600 " />
+                            <input
+                                type="checkbox"
+                                class="h-6 w-6 rounded-md border-gray-300 text-indigo-600"
+                            />
                             <img
                                 :src="product.imageUrl"
                                 alt=""
                                 class="aspect-[3/2] w-40 rounded-lg border border-gray-300 object-cover object-top"
                             />
-                            <a href="#" class="text-lg font-semibold text-gray-700">{{ product.name }}</a>
-                            <div class="font-medium text-gray-300">{{ product.category }}</div>
+                            <div>
+                                <a
+                                    href="#"
+                                    class="text-lg font-semibold text-gray-700"
+                                    >{{ product.name }}</a
+                                >
+                                <p class="pt-1 font-medium text-gray-300">
+                                    {{ product.category }}
+                                </p>
+                            </div>
                         </td>
-                        <td>{{ product.price }}</td>
-                        <td>{{ product.downloaded }}</td>
-                        <td>{{ product.rating }}</td>
-                        <td>Plataforms</td>
+                        <td class="text-center font-medium">
+                            {{ product.price }}
+                        </td>
+                        <td class="text-center font-medium">
+                            {{ product.downloaded }}
+                        </td>
+                        <td class="text-center">
+                            <span class="font-medium">{{ product.rating }}</span
+                            ><span class="text-gray-400">/5</span>
+                        </td>
+                        <td>
+                            <div
+                                class="flex items-center justify-center gap-x-3"
+                            >
+                                <a
+                                    href="#"
+                                    v-for="icon in product.platformicons"
+                                    class="rounded-md bg-gray-200 hover:bg-gray-300"
+                                >
+                                    <component :is="icon" class="h-6 w-6" />
+                                </a>
+                            </div>
+                        </td>
                         <td>{{ product.createdAt }}</td>
                     </tr>
                 </tbody>
