@@ -21,6 +21,10 @@ import FilterIcon from "./icons/filter.svg";
 import FigmaIcon from "./icons/figma.svg";
 import SketchIcon from "./icons/sketch.svg";
 import AIIcon from "./icons/ai.svg";
+import TrashIcon from "./icons/trash.svg";
+import PencilIcon from "./icons/pencil.svg";
+import ChevronLeftIcon from "./icons/chevron-left.svg";
+import ChevronRightIcon from "./icons/chevron-right.svg";
 
 const sidebar = [
     [
@@ -55,7 +59,7 @@ const products = [
         category: "Web design",
         imageUrl: "/img/organic-landing-page.png",
         price: 20,
-        dwonloaded: 793,
+        downloaded: 793,
         rating: 4.9,
         platformicons: [FigmaIcon, SketchIcon],
         createdAt: "12/01/22",
@@ -169,7 +173,7 @@ const products = [
                 </li>
             </ul>
 
-            <table class="w-full">
+            <table class="w-full border-b border-gray-200">
                 <tr class="border-b text-sm font-medium text-gray-400">
                     <td class="py-5 pl-10">
                         <div class="flex items-center gap-x-4">
@@ -191,7 +195,10 @@ const products = [
                 </tr>
 
                 <tbody>
-                    <tr v-for="product in products">
+                    <tr
+                        v-for="product in products"
+                        class="group transition-colors hover:bg-gray-100"
+                    >
                         <td class="flex items-center gap-x-4 py-4 pl-10">
                             <input
                                 type="checkbox"
@@ -214,7 +221,7 @@ const products = [
                             </div>
                         </td>
                         <td class="text-center font-medium">
-                            {{ product.price }}
+                            ${{ product.price }}
                         </td>
                         <td class="text-center font-medium">
                             {{ product.downloaded }}
@@ -230,16 +237,55 @@ const products = [
                                 <a
                                     href="#"
                                     v-for="icon in product.platformicons"
-                                    class="rounded-md bg-gray-200 hover:bg-gray-300"
+                                    class="rounded-md bg-gray-200 p-2 hover:bg-gray-300"
                                 >
                                     <component :is="icon" class="h-6 w-6" />
                                 </a>
                             </div>
                         </td>
-                        <td>{{ product.createdAt }}</td>
+                        <td>
+                            <span
+                                class="inline-block w-20 group-hover:hidden"
+                                >{{ product.createdAt }}</span
+                            >
+                            <div
+                                class="hidden hover:gap-x-2 group-hover:flex group-hover:w-20 group-hover:items-center group-hover:text-gray-500"
+                            >
+                                <button
+                                    class="p-2 hover:rounded-md hover:bg-gray-200"
+                                >
+                                    <PencilIcon class="h-6 w-6 fill-current" />
+                                </button>
+                                <button
+                                    class="p-2 hover:rounded-md hover:bg-gray-200"
+                                >
+                                    <TrashIcon class="h-6 w-6 fill-current" />
+                                </button>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
+            <div class="flex justify-center gap-x-2 pt-8">
+                <button class="flex h-8 w-8 items-center">
+                    <ChevronLeftIcon
+                        class="h-6 w-6 stroke-current hover:text-indigo-600"
+                    />
+                </button>
+
+                <button
+                    v-for="i in 6"
+                    class="flex h-8 w-8 items-center justify-center rounded-full font-medium"
+                    :class=" i===1 ? 'bg-gray-800 text-white':'text-gray-300 hover:text-indigo-600' "
+                >
+                    {{ i }}
+                </button>
+                <button class="flex h-8 w-8 items-center">
+                    <ChevronRightIcon
+                        class="h-6 w-6 stroke-current hover:text-indigo-600"
+                    />
+                </button>
+            </div>
         </main>
     </div>
 </template>
